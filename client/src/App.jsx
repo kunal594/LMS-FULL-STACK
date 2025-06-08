@@ -12,6 +12,7 @@ import MyCourses from './pages/educator/MyCourses'
 import StudentsEnrolled from './pages/educator/StudentsEnrolled'
 import Dashboard from './pages/educator/Dashboard'
 import Navbar from './components/student/Navbar'
+import "quill/dist/quill.snow.css";
 
 const App = () => {
 
@@ -36,7 +37,7 @@ const isEducatorRoute = useMatch('/educator/*')
          <Route path='educator' element ={<Dashboard/>}/>
          <Route path='add-course' element ={<AddCourse/>}/>
          <Route path='my-courses' element ={<MyCourses/>}/>
-         <Route path='student-enrolled' element={<MyCourses/>}/>
+
          <Route path='student-enrolled' element={<StudentsEnrolled/>}/>
 
          </Route>

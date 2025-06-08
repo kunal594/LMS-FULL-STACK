@@ -35,7 +35,8 @@ const [filteredCourse, setFilteredCourse] = useState([])
       </div>
       <SearchBar data={input}/>
 </div>
-{input && <div className='inline'>
+{input && <div className='inline-flex items-center gap-4 px-4 py-2 border mt-8
+-mb-8 text-gray-600'>
   <p>{input}</p>
   <img src={assets.cross_icon} alt="" className='cursor-pointer' onClick={()=> 
     navigate('/course-list')
@@ -49,6 +50,7 @@ const [filteredCourse, setFilteredCourse] = useState([])
 </div>
        
     </div>
+    <footer/>
     </>
   )
 }
