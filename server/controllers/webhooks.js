@@ -21,14 +21,14 @@ export const clerkWebhooks = async (req, res)=> {
                     name: data.first_name + " " + data.last_name,
                     imageUrl: data.image_url,
                 }
-                await User.created(userData)
+                await User.create(userData)
                 res.json({})
                 break;
             }
               case 'user.updated':{
                 const userData = {
                    
-                    email: data.email_address[0].email_address,
+                    email: data.email_addresses[0].email_address,
                     name: data.first_name + " " + data.last_name,
                     imageUrl: data.image_url,
 
