@@ -1,4 +1,4 @@
-import { Purchase } from "../models/Purchase.js"
+import {Purchase} from "../models/Purchase.js";
 import User from "../models/User.js"
 import Stripe from "stripe";
 import Course from "../models/Course.js";
@@ -22,7 +22,7 @@ export const getUserData = async (req, res) => {
 export const userEnrolledCourses = async(req, res) => {
     try {
          const userId = req.auth.userId
-        const user = await User.findById(userId).populate('enrolledCourses')
+        const userData = await User.findById(userId).populate('enrolledCourses')
         res.json({success: true, enrolledCourses: userData.enrolledCourses})
 
     } catch (error) {
@@ -39,7 +39,7 @@ export const purchaseCourse = async (req, res) => {
         const userData = await User.findById(userId)
         const courseData = await Course.findById(courseId)
         if(!userData || !courseData) {
-            return res.json({success: false, message: 'Data Not'})
+            return res.json({success: false, message: 'Data Not Found'})
 
         }
         const purchaseData = {
@@ -48,7 +48,7 @@ export const purchaseCourse = async (req, res) => {
             amount:(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2),
 
         }
-        const newPurchase = await Purchase.create(purchaseData)
+const newPurchase = await Purchase.create(purchaseData)
 // Stripe Gateway Initialize
 const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -66,7 +66,7 @@ const line_items = [{
     },
     quantity: 1
 }]
-const session = await stripeInstance.checkout.session.create({
+const session = await stripeInstance.checkout.sessions.create({
     success_url: `${origin}/loading/my-enrollments`,
     cancel_url: `${origin}/`,
     line_items: line_items,
