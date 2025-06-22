@@ -98,7 +98,7 @@ userData.enrolledCourses.push(courseData._id)
 await userData.save()
 
 purchaseData.status = 'completed'
-await userData.save()
+await purchaseData.save()
 
       break;
   }
